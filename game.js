@@ -79,16 +79,24 @@ function eventListeners(status) {
 
 function setCanvasSize() {
     canvasSize = window.innerHeight > window.innerWidth ? window.innerWidth * 0.8 : window.innerHeight * 0.8;
+    // canvasSize = 1 * canvasSize.toFixed();
     
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
     
     elementSize = canvasSize / 10;
-    startGame();
-    eventListeners(eventListenerStatus);
+
+    playerPosition.x = undefined
+    playerPosition.y = undefined
+    restartGame();
 }
 
 function startGame() {
+
+    if (!eventListenerStatus) {
+        eventListeners(eventListenerStatus);
+    }
+
     livesRender();
     bestTimeRender();
 
@@ -193,7 +201,7 @@ function restartGame() {
         playerPosition.x = undefined;
         eventListeners(eventListenerStatus);
         startGame();
-    },'400');
+    },'800');
 }
 
 function resetGame() {
